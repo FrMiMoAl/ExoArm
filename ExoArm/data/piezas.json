@@ -1,0 +1,51 @@
+[
+  {
+    "titulo": "01. HOMBRO (Shoulder Joint)",
+    "modelo3d": "assets/hombro.glb",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4"
+  },
+  {
+    "titulo": "02. CODO (Elbow Actuator)",
+    "modelo3d": "assets/codo.glb",
+    "planoImg": "assets/plano-codo.png",
+    "planoPdf": "assets/docs/codo.pdf",
+    "videoRender": "assets/render-codo.mp4"
+  },
+  {
+    "titulo": "03. MUÑECA (Wrist Rotation)",
+    "modelo3d": "assets/muneca.glb",
+    "planoImg": "assets/plano-muneca.png",
+    "planoPdf": "assets/docs/muneca.pdf",
+    "videoRender": "assets/render-muneca.mp4"
+  },
+  {
+    "titulo": "04. PINZA (Gripper)",
+    "modelo3d": "assets/pinza.glb",
+    "planoImg": "assets/plano-pinza.png",
+    "planoPdf": "assets/docs/pinza.pdf",
+    "videoRender": "assets/render-pinza.mp4"
+  },
+  {
+    "titulo": "05. CINTURÓN (Power Unit)",
+    "modelo3d": "assets/cinturon.glb",
+    "planoImg": "assets/plano-cinturon.png",
+    "planoPdf": "assets/docs/cinturon.pdf",
+    "videoRender": "assets/render-cinturon.mp4"
+  },
+  {
+    "titulo": "06. ESPALDA (Back Support)",
+    "modelo3d": "assets/espalda.glb",
+    "planoImg": "assets/plano-espalda.png",
+    "planoPdf": "assets/docs/espalda.pdf",
+    "videoRender": "assets/render-espalda.mp4"
+  },
+  {
+    "titulo": "07. CADERA (Hip Stability)",
+    "modelo3d": "assets/cadera.glb",
+    "planoImg": "assets/plano-cadera.png",
+    "planoPdf": "assets/docs/cadera.pdf",
+    "videoRender": "assets/render-cadera.mp4"
+  }
+]

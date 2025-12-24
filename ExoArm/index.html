@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ExoArm – Prótesis Biónica Avanzada</title>
+  <meta name="description" content="ExoArm: Desarrollo de prótesis robóticas de alto rendimiento." />
+  
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+  <style>
+    /* ... TUS ESTILOS CSS (SE MANTIENEN IGUAL) ... */
+    :root{
+      --bg: #050505; --bg2: #1a1a1a; --card: #141414; --card2: #0f0f0f;
+      --muted: #a0a0a0; --txt: #ffffff;
+      --acc: #d90429; --acc2: #ef233c; --silver: #8d99ae;
+      --shadow: 0 10px 30px rgba(217, 4, 41, 0.15);
+      --border: 1px solid rgba(255,255,255,0.1);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);color:var(--txt);font-family:'Segoe UI',Roboto,sans-serif;overflow-x:hidden}
+    a{color:var(--acc);text-decoration:none;transition:0.3s}
+    a:hover{color:var(--acc2)}
+    img,video{max-width:100%;display:block}
+    
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:100;background:rgba(5,5,5,0.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,0,0,0.2)}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;max-width:1200px;margin:auto}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand .dot{width:12px;height:12px;transform:rotate(45deg);background:var(--acc);box-shadow:0 0 10px var(--acc)}
+    .brand h1{font-size:20px;margin:0;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:white}
+    .menu{display:flex;gap:20px;flex-wrap:wrap}
+    .menu a{font-size:14px;font-weight:600;color:var(--silver)}
+    .menu a:hover{color:var(--acc)}
+
+    /* HERO */
+    .hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:flex-end;justify-content:flex-start;overflow:hidden;margin-top:-64px;padding-top:64px}
+    .hero video, .hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+    .hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);z-index:1;pointer-events:none}
+    .hero-content{position:relative;z-index:2;text-align:left;max-width:600px;padding:20px;margin-left:5%;margin-bottom:8%}
+    .hero h2{font-size:3.5rem;margin:0;line-height:1;text-transform:uppercase;letter-spacing:-2px;text-shadow:0 2px 10px rgba(0,0,0,0.5)}
+    .hero h2 span{color:var(--acc)}
+    .hero p{font-size:1.3rem;color:#e0e0e0;margin-top:20px;text-shadow:0 1px 5px rgba(0,0,0,0.5)}
+    .btn-hero{display:inline-block;margin-top:30px;background:var(--acc);color:white;padding:15px 50px;border-radius:50px;font-weight:800;text-transform:uppercase;letter-spacing:1px;box-shadow:0 5px 20px rgba(217,4,41,0.4);transition:all 0.3s ease}
+    .btn-hero:hover{background:var(--acc2);transform:translateY(-3px);box-shadow:0 10px 30px rgba(217,4,41,0.7);color:white}
+    
+    /* SECTIONS */
+    section{max-width:1200px;margin:60px auto;padding:0 20px}
+    .section-title{border-left:4px solid var(--acc);padding-left:15px;margin-bottom:30px}
+    .section-title h3{font-size:2rem;margin:0;text-transform:uppercase}
+    .pill{color:var(--acc);font-weight:bold;letter-spacing:2px;font-size:0.8rem;text-transform:uppercase}
+
+    /* ESTILOS PARA LA NUEVA SECCIÓN (GRID INFORMATIVO) */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
+    .feature-list { list-style: none; padding: 0; margin-top: 20px; }
+    .feature-list li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; color: var(--silver); }
+    .feature-list span { color: var(--acc); font-weight: bold; }
+    .stat-box { background: var(--card2); padding: 25px; border-radius: 12px; border: 1px solid #333; }
+    .stat-row { display: flex; justify-content: space-between; border-bottom: 1px solid #333; padding: 10px 0; font-size: 0.95rem; }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-row b { color: white; }
+
+    /* PARTS CONTAINER */
+    .parts-container{display:grid;gap:15px}
+    details{background:var(--card);border:var(--border);border-radius:8px;overflow:hidden;transition:all 0.3s ease}
+    details[open]{border-color:var(--acc);box-shadow:0 0 20px rgba(217,4,41,0.1)}
+    summary{padding:20px;cursor:pointer;font-weight:700;font-size:1.2rem;display:flex;justify-content:space-between;align-items:center;list-style:none;background:linear-gradient(90deg,var(--card2),var(--card))}
+    summary:hover{background:#1e1e1e;color:var(--acc)}
+    summary::after{content:'+';font-size:1.5rem;color:var(--acc);transition:transform 0.3s}
+    details[open] summary::after{transform:rotate(45deg)}
+    
+    .part-content{padding:20px;background:#000;border-top:1px solid #333;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+    @media(max-width:900px){.part-content{grid-template-columns:1fr}.hero h2{font-size:2.5rem}}
+    
+    .display-box{background:var(--bg2);border:1px solid #333;border-radius:8px;padding:10px;display:flex;flex-direction:column}
+    .display-box h4{margin:0 0 10px 0;color:var(--silver);font-size:0.9rem;text-transform:uppercase;border-bottom:1px solid var(--acc);display:inline-block;padding-bottom:5px}
+    
+    model-viewer{width:100%;height:300px;background-color:#111;border-radius:4px}
+    .plano-img{width:100%;height:250px;object-fit:contain;background:white;border-radius:4px;margin-bottom:10px}
+    .video-render{width:100%;height:300px;object-fit:cover;border-radius:4px}
+    .btn-download{background:var(--acc);color:white;text-align:center;padding:10px;border-radius:4px;font-weight:bold;font-size:0.9rem;margin-top:auto}
+    .btn-download:hover{background:var(--acc2)}
+
+    /* FOOTER */
+    footer{margin-top:60px;padding:40px 20px;background:#000;text-align:center;border-top:1px solid #222}
+    .reveal{opacity:0;transform:translateY(20px);transition:all 0.6s ease}
+    .reveal.on{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="wrap">
+      <div class="brand">
+        <span class="dot"></span>
+        <h1>ExoArm</h1>
+      </div>
+      <div class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#proyecto">El Proyecto</a>
+        <a href="#piezas">Ingeniería & Piezas</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="inicio" class="hero">
+    <video autoplay muted loop playsinline poster="assets/poster-hero.jpg" class="hero-video">
+      <source src="assets/videoplayback.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content reveal">
+      <h2>Exo<span>Arm</span> MK-1</h2>
+      <p>Proyecto Final IMT-311 2-2025.</p>
+      <a href="#proyecto" class="btn-hero">Explorar Diseño</a>
+    </div>
+  </header>
+<!-- Proyecto  -->
+  <section id="proyecto" class="reveal">
+    <div class="section-title">
+      <span class="pill">Visión General</span>
+      <h3>Enfoque Tecnológico</h3>
+    </div>
+
+    <div class="info-grid">
+      <div class="text-content">
+        <p style="font-size: 1.1rem; line-height: 1.6; color: #ddd;">
+          ExoArm nace de la necesidad de <strong> superar los límites biológicos</strong> en tareas de alta complejidad. 
+          A diferencia de un asistente estático, este sistema actúa como una<strong> extremidad supernumeraria (tercer brazo)</strong>, 
+          utilizando servomotores de precisión para brindar apoyo activo y autonomía al usuario en tiempo real.
+        </p>
+        <ul class="feature-list">
+          <li>
+            <span>➞</span> Asistencia Multitarea: Permite manipular herramientas o sostener componentes mientras las manos del usuario están ocupadas.
+          </li>
+          <li>
+            <span>➞</span> Prototipado Rápido: Estructura ligera impresa en 3D (PLA/ABS) diseñada para iteración y ensamblaje ágil.
+          </li>
+          <li>
+            <span>➞</span> Ergonomía Portátil: Sistema de anclaje adaptable que distribuye el peso sin limitar la movilidad natural del torso.
+          </li>
+        </ul>
+      </div>
+<!-- especificaciones  -->
+      <div class="stat-box">
+        <h4 style="color:var(--acc); margin-top:0; border-bottom:1px solid #333; padding-bottom:10px;">Especificaciones MK-1</h4>
+        
+        <div class="stat-row">
+          <span>Peso Total</span>
+          <b>1.25 kg</b>
+        </div>
+        <div class="stat-row">
+          <span>Grados de Libertad</span>
+          <b>6 DOF</b>
+        </div>
+        <div class="stat-row">
+          <span>Capacidad de Carga</span>
+          <b>8 kg (Estático)</b>
+        </div>
+        <div class="stat-row">
+          <span>Material Principal</span>
+          <b>PLA+ / TPU / Aluminio</b>
+        </div>
+        <div class="stat-row">
+          <span>Autonomía</span>
+          <b>12 Horas (Uso continuo)</b>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Piezas  -->
+  <section id="piezas" class="reveal">
+    <div class="section-title">
+      <span class="pill">Desglose Técnico</span>
+      <h3>Arquitectura del Brazo</h3>
+    </div>
+
+    <div id="piezas-container" class="parts-container">
+       </div>
+
+  </section>
+<!-- Proyecto  -->
+  <section id="contacto" class="reveal">
+    <div style="background:var(--card);border:1px solid #333;padding:40px;border-radius:12px;text-align:center">
+      <span class="pill">Colaboración</span>
+      <h3 style="margin-top:10px">¿Interesado en la tecnología?</h3>
+      <p style="color:var(--silver);max-width:600px;margin:10px auto 30px auto">
+        Proyecto organizado y escalable.
+      </p>
+      <a class="btn-download" href="mailto:contacto@exoarm.test" style="text-decoration:none;padding:15px 40px;display:inline-block">Contactar</a>
+    </div>
+  </section>
+
+  <footer>
+    <small style="color:#555">© 2025 ExoArm Project.</small>
+  </footer>
+
+  <script src="main.js"></script>
+
+</body>
+</html>
