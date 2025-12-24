@@ -1,15 +1,22 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  
-  // 1. CARGA DINÁMICA DE PIEZAS DESDE JSON
+
+  // ==========================================
+  // 1. CARGA DE PIEZAS DESDE JSON
+  // ==========================================
   const container = document.getElementById('piezas-container');
   
   if (container) {
     try {
       const response = await fetch('data/piezas.json');
+      if (!response.ok) throw new Error("No se encontró el archivo JSON");
+      
       const piezas = await response.json();
+      container.innerHTML = '';
 
-      piezas.forEach(pieza => {
-        // Creamos el HTML para cada pieza usando Template Strings
+      // A) Generamos todo el HTML primero
+      piezas.forEach((pieza, index) => {
+        const uniqueId = `modelo-${index}`; // ID único para cada visor
+
         const htmlPieza = `
           <details>
             <summary>${pieza.titulo}</summary>
@@ -17,77 +24,78 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="display-box">
                     <h4>Visualización CAD 3D</h4>
                     <model-viewer 
+                        id="${uniqueId}"
                         src="${pieza.modelo3d}" 
                         camera-controls 
                         auto-rotate 
                         ar 
                         shadow-intensity="1"
-                        loading="lazy"> </model-viewer>
+                        style="background-color: #111; width: 100%; height: 300px;">
+                    </model-viewer>
                 </div>
                 <div class="display-box">
                     <h4>Plano Técnico</h4>
-                    <img src="${pieza.planoImg}" class="plano-img" alt="Plano ${pieza.titulo}" loading="lazy">
-                    <a href="${pieza.planoPdf}" class="btn-download" download>Descargar PDF</a>
+                    <img src="${pieza.planoImg}" class="plano-img" alt="Plano" style="width:100%; height:250px; object-fit:contain; background:white;">
+                    <a href="${pieza.planoPdf}" class="btn-download" download style="display:block; text-align:center; background:#d90429; color:white; padding:10px; margin-top:10px; text-decoration:none; border-radius:4px;">Descargar PDF</a>
                 </div>
                 <div class="display-box">
                     <h4>Render de Movimiento</h4>
-                    <video class="video-render" controls muted loop playsinline preload="none" poster="${pieza.planoImg}">
+                    <video controls muted loop playsinline style="width:100%; height:300px; object-fit:cover;">
                         <source src="${pieza.videoRender}" type="video/mp4">
                     </video>
                 </div>
             </div>
           </details>
         `;
-        // Inyectamos el HTML en el contenedor
         container.innerHTML += htmlPieza;
       });
 
+      // B) APLICAR COLORES (La magia ocurre aquí)
+      // Recorremos las piezas nuevamente para aplicar el color una vez que el HTML existe
+      piezas.forEach((pieza, index) => {
+        if (pieza.color) {
+            const viewer = document.getElementById(`modelo-${index}`);
+            
+            // Esperamos a que el modelo cargue ('load') para pintar
+            viewer.addEventListener('load', () => {
+                const material = viewer.model.materials[0];
+                if(material) {
+                    material.pbrMetallicRoughness.setBaseColorFactor(pieza.color);
+                }
+            });
+        }
+      });
+
     } catch (error) {
-      console.error("Error cargando las piezas:", error);
-      container.innerHTML = `<p style="color:var(--acc); text-align:center;">Error cargando los datos del proyecto.</p>`;
+      console.error("Error:", error);
+      container.innerHTML = `<p style="color:white; text-align:center;">⚠️ Error cargando piezas. Revisa la consola.</p>`;
     }
   }
 
-  // 2. FUNCIONALIDADES ANTERIORES (Scroll, Reveal, Video Hero)
+  // ==========================================
+  // 2. FUNCIONALIDADES EXTRA (Scroll, Video)
+  // ==========================================
   
-  // Fallback CSS
-  const root = document.documentElement;
-  if (!getComputedStyle(root).getPropertyValue('--card2').trim()) {
-    root.style.setProperty('--card2', '#0c0f14');
-  }
-
-  // Scroll suave
-  document.querySelectorAll('.menu a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const id = a.getAttribute('href');
-      if (id && id.startsWith('#')) {
-        const el = document.querySelector(id);
-        if (el) {
-          e.preventDefault();
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) target.scrollIntoView({ behavior: 'smooth' });
     });
   });
 
-  // Reveal animation
   const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
+  const io = new IntersectionObserver((entries) => {
       entries.forEach(en => {
         if (en.isIntersecting) {
           en.target.classList.add('on');
           io.unobserve(en.target);
         }
       });
-    }, { threshold: 0.1 });
-    revealEls.forEach(el => io.observe(el));
-  } else {
-    revealEls.forEach(el => el.classList.add('on'));
-  }
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
 
-  // Autoplay Hero Video
-  const heroVideo = document.querySelector('.hero-video');
+  const heroVideo = document.querySelector('.hero video');
   if (heroVideo) {
     heroVideo.play().catch(() => {
       heroVideo.muted = true;
