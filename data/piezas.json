@@ -1,18 +1,28 @@
 [
   {
-    "titulo": "01. HOMBRO (Rojo Corporativo)",
-    "modelo3d": "assets/hombro.glb",
+    "titulo": "01. TAPA CODO",
+    "modelo3d": "assets/tapa-codo/tapa-codo.gltf",
     "planoImg": "assets/plano-hombro.png",
     "planoPdf": "assets/docs/hombro.pdf",
     "videoRender": "assets/render-hombro.mp4",
-    "color": [0.85, 0.01, 0.16, 1] 
+    "color": [0.85, 0.01, 0.16, 1],
+    "renders": [              
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+  ]
   },
   {
-    "titulo": "02. CODO (Plateado Metálico)",
-    "modelo3d": "assets/codo.gltf",
+    "titulo": "02. CODO ",
+    "modelo3d": "assets/codo/codo.gltf",
     "planoImg": "assets/plano-codo.png",
     "planoPdf": "assets/docs/codo.pdf",
     "videoRender": "assets/render-codo.mp4",
-    "color": [0.85, 0.01, 0.16, 1]
+    "color": [0.85, 0.01, 0.16, 1],
+    "renders": [               
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+  ]
   }
 ]
