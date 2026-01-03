@@ -1,0 +1,162 @@
+{
+    "asset": {
+        "generator": "SOLIDWORKSGLTF",
+        "version": "2.0"
+    },
+    "scene": 0,
+    "scenes": [
+        {
+            "name": "Default",
+            "nodes": [
+                0,
+                1
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "matrix": [
+                -0.057284678645958945,
+                -0.16848446548800683,
+                -0.9840383379125276,
+                0.0,
+                -0.9943076070560124,
+                0.09832322600113162,
+                0.041047847437799205,
+                0.0,
+                0.0898378992573605,
+                0.9807882177707637,
+                -0.1731578001104002,
+                0.0,
+                0.09007575001904228,
+                0.38898209750294704,
+                -0.06877379851806167,
+                1.0
+            ],
+            "camera": 0,
+            "name": "current camera"
+        },
+        {
+            "mesh": 0,
+            "name": "idea2"
+        }
+    ],
+    "cameras": [
+        {
+            "type": "orthographic",
+            "orthographic": {
+                "xmag": 0.049160276212434566,
+                "ymag": 0.03798748616415398,
+                "zfar": 0.6531258397004593,
+                "znear": 0.269198274339799
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "primitives": [
+                {
+                    "attributes": {
+                        "POSITION": 1,
+                        "NORMAL": 2
+                    },
+                    "indices": 0,
+                    "material": 0,
+                    "mode": 4
+                }
+            ]
+        }
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 8142,
+            "type": "SCALAR",
+            "min": [
+                0
+            ],
+            "max": [
+                3551
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3552,
+            "type": "VEC3",
+            "min": [
+                -0.0689999982714653,
+                -0.007000000216066837,
+                -0.02983333356678486
+            ],
+            "max": [
+                -0.012500000186264515,
+                0.007000000216066837,
+                0.02916666679084301
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 3552,
+            "type": "VEC3",
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ],
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        }
+    ],
+    "materials": [
+        {
+            "name": "defaultplastic",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.3586539338504788,
+                    0.3586539338504788,
+                    0.3586539338504788,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.17999999970197678
+            }
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 32568,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 32568,
+            "byteLength": 42624,
+            "byteStride": 12,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 75192,
+            "byteLength": 42624,
+            "byteStride": 12,
+            "target": 34962
+        }
+    ],
+    "buffers": [
+        {
+            "uri": "idea2.bin",
+            "byteLength": 117816
+        }
+    ]
+}
