@@ -5,24 +5,180 @@
     "planoImg": "assets/plano-hombro.png",
     "planoPdf": "assets/docs/hombro.pdf",
     "videoRender": "assets/render-hombro.mp4",
-    "color": [0.85, 0.01, 0.16, 1],
-    "renders": [              
+    "color": "#D90329",
+    "renders": [
       "assets/render-codo-1.jpg",
       "assets/render-codo-2.jpg",
       "assets/render-codo-3.jpg"
-  ]
+    ]
   },
   {
-    "titulo": "02. CODO ",
+    "titulo": "02. CODO",
     "modelo3d": "assets/codo/codo.gltf",
     "planoImg": "assets/plano-codo.png",
     "planoPdf": "assets/docs/codo.pdf",
     "videoRender": "assets/render-codo.mp4",
-    "color": [0.85, 0.01, 0.16, 1],
-    "renders": [               
+    "color": "#D90329",
+    "renders": [
       "assets/render-codo-1.jpg",
       "assets/render-codo-2.jpg",
       "assets/render-codo-3.jpg"
-  ]
+    ]
+  },
+  {
+    "titulo": "03. ENGRANE SERVOMOTOR",
+    "modelo3d": "assets/EngraneServo/EngraneServo.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#A9962E",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "04. ENGRANE UNION CODO",
+    "modelo3d": "assets/EngraneUnion/EngraneUnion.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#A9962E",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "05. UNION CODO MUÑECA",
+    "modelo3d": "assets/UnionCodoMuñeca/UnionCodoMuñeca.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#D90329",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "06. TAPA UNION CODO MUÑECA",
+    "modelo3d": "assets/TapaUnionCodoMuñeca/TapaUnionCodoMuñeca.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#2e2e2e",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "07. UNION MUÑECA GRIPPER",
+    "modelo3d": "assets/UnionMuñecaGripper/UnionMuñecaGripper.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#D90329",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "08. TAPA UNION MUÑECA GRIPPER",
+    "modelo3d": "assets/TapaUnionMuñecaGripper/TapaUnionMuñecaGripper.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#2e2e2e",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "09. GRIPPER UNION",
+    "modelo3d": "assets/Gripperunion/Gripperunion.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#2e2e2e",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "10. GRIPPER TAPA",
+    "modelo3d": "assets/GripperTapa/GripperTapa.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#2e2e2e",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "17. VERTEBRA ARTICULADA A",
+    "modelo3d": "assets/VertebraA/VertebraA.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#91918e",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "18. VERTEBRA ARTICULADA B",
+    "modelo3d": "assets/VertebraB/VertebraB.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#91918e",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "19. COLUMNA BASE",
+    "modelo3d": "assets/ColumnaBase/ColumnaBase.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#91918e",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
+  },
+  {
+    "titulo": "20. AGARRE COLUMNA",
+    "modelo3d": "assets/AgarreColumna/AgarreColumna.gltf",
+    "planoImg": "assets/plano-hombro.png",
+    "planoPdf": "assets/docs/hombro.pdf",
+    "videoRender": "assets/render-hombro.mp4",
+    "color": "#91918e",
+    "renders": [
+      "assets/render-codo-1.jpg",
+      "assets/render-codo-2.jpg",
+      "assets/render-codo-3.jpg"
+    ]
   }
 ]
