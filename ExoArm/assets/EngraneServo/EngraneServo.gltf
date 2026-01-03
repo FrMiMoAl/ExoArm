@@ -1,0 +1,162 @@
+{
+    "asset": {
+        "generator": "SOLIDWORKSGLTF",
+        "version": "2.0"
+    },
+    "scene": 0,
+    "scenes": [
+        {
+            "name": "Default",
+            "nodes": [
+                0,
+                1
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "matrix": [
+                -0.07905580373421399,
+                -0.19817938057605994,
+                0.9769724218269555,
+                0.0,
+                0.7988010809072457,
+                0.5737157195291955,
+                0.1810168674640948,
+                0.0,
+                -0.5963782466164854,
+                0.7947170605187652,
+                0.11295034609535164,
+                0.0,
+                -0.21609293358611253,
+                0.3066075219748292,
+                0.12848452101236577,
+                1.0
+            ],
+            "camera": 0,
+            "name": "current camera"
+        },
+        {
+            "mesh": 0,
+            "name": "EngraneServo"
+        }
+    ],
+    "cameras": [
+        {
+            "type": "orthographic",
+            "orthographic": {
+                "xmag": 0.045727604609118434,
+                "ymag": 0.035334967197955154,
+                "zfar": 0.6548593669572488,
+                "znear": 0.2135317533900052
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "primitives": [
+                {
+                    "attributes": {
+                        "POSITION": 1,
+                        "NORMAL": 2
+                    },
+                    "indices": 0,
+                    "material": 0,
+                    "mode": 4
+                }
+            ]
+        }
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 17724,
+            "type": "SCALAR",
+            "min": [
+                0
+            ],
+            "max": [
+                8513
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 8514,
+            "type": "VEC3",
+            "min": [
+                -0.01430593803524971,
+                0.005200000014156103,
+                -0.016057919710874557
+            ],
+            "max": [
+                0.01430593803524971,
+                0.01600000075995922,
+                0.012557920068502426
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 8514,
+            "type": "VEC3",
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ],
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        }
+    ],
+    "materials": [
+        {
+            "name": "generictwocolor",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.7667436297637299,
+                    0.6455552910764322,
+                    0.39929332701737336,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.19979999999050052
+            }
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 70896,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 70896,
+            "byteLength": 102168,
+            "byteStride": 12,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 173064,
+            "byteLength": 102168,
+            "byteStride": 12,
+            "target": 34962
+        }
+    ],
+    "buffers": [
+        {
+            "uri": "EngraneServo.bin",
+            "byteLength": 275232
+        }
+    ]
+}
