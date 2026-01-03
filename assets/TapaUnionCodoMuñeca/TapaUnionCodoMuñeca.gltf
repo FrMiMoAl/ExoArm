@@ -1,0 +1,162 @@
+{
+    "asset": {
+        "generator": "SOLIDWORKSGLTF",
+        "version": "2.0"
+    },
+    "scene": 0,
+    "scenes": [
+        {
+            "name": "Default",
+            "nodes": [
+                0,
+                1
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "matrix": [
+                0.6896107008313447,
+                -0.46980773755601046,
+                -0.5511059526365183,
+                0.0,
+                0.0993514148443342,
+                0.8151877819905193,
+                -0.5706121068307318,
+                0.0,
+                0.7173328221037503,
+                0.33874705877081845,
+                0.6088382810786367,
+                0.0,
+                0.6632608502988,
+                0.3336916617669735,
+                0.6515556100971773,
+                1.0
+            ],
+            "camera": 0,
+            "name": "current camera"
+        },
+        {
+            "mesh": 0,
+            "name": "codo"
+        }
+    ],
+    "cameras": [
+        {
+            "type": "orthographic",
+            "orthographic": {
+                "xmag": 0.18257656703217098,
+                "ymag": 0.14108189270667756,
+                "zfar": 1.2202534952393536,
+                "znear": 0.77892588167211
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "primitives": [
+                {
+                    "attributes": {
+                        "POSITION": 1,
+                        "NORMAL": 2
+                    },
+                    "indices": 0,
+                    "material": 0,
+                    "mode": 4
+                }
+            ]
+        }
+    ],
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 1002,
+            "type": "SCALAR",
+            "min": [
+                0
+            ],
+            "max": [
+                465
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 466,
+            "type": "VEC3",
+            "min": [
+                -0.01424956601113081,
+                0.05000000074505806,
+                -0.042749565094709396
+            ],
+            "max": [
+                0.01424956601113081,
+                0.05299999937415123,
+                -0.00770465936511755
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 466,
+            "type": "VEC3",
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ],
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        }
+    ],
+    "materials": [
+        {
+            "name": "blacksofttouchplastic",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.0065849575776965145,
+                    0.0065849575776965145,
+                    0.0065849575776965145,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.699999988079071
+            }
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 4008,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 4008,
+            "byteLength": 5592,
+            "byteStride": 12,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 9600,
+            "byteLength": 5592,
+            "byteStride": 12,
+            "target": 34962
+        }
+    ],
+    "buffers": [
+        {
+            "uri": "codo.bin",
+            "byteLength": 15192
+        }
+    ]
+}
