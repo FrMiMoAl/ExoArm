@@ -3,27 +3,117 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ExoArm – Proyecto Final</title>
-
-  <script type="module"
-    src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js">
-  </script>
+  <title>EXO-ARM | Tercer brazo robótico asistente</title>
 
   <style>
-    body{
-      margin:0;
-      background:#050505;
-      color:white;
-      font-family:Segoe UI, Roboto, sans-serif;
+    :root{
+      --bg:#07090d;
+      --panel:#10151d;
+      --panel-2:#151c26;
+      --line:#263244;
+      --accent:#e11d2e;
+      --accent-2:#4fa8b8;
+      --text:#f5f7fb;
+      --muted:#b9c3d1;
+      --soft:#dce7ef;
+      --shadow:0 18px 50px rgba(0,0,0,.28);
+      --radius:22px;
+      --max:1180px;
     }
 
-    /* ===== HERO ===== */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(225,29,46,.14), transparent 28%),
+        linear-gradient(180deg,#06080c 0%, #0a0f15 55%, #080b10 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{color:inherit}
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(14px);
+      background:rgba(7,9,13,.76);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .nav{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      padding:12px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+
+    .brand-badge{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--accent),#ff3d4f);
+      box-shadow:var(--shadow);
+      font-size:1rem;
+      font-weight:900;
+    }
+
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-weight:600;
+      letter-spacing:.02em;
+      font-size:.75rem;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:var(--muted);
+      padding:10px 14px;
+      border-radius:999px;
+      transition:.2s ease;
+      font-size:.96rem;
+    }
+
+    .nav-links a:hover{
+      color:var(--text);
+      background:rgba(255,255,255,.06);
+    }
+
     .hero{
       position:relative;
-      height:100vh;
-      overflow:hidden;
+      min-height:100vh;
       display:flex;
-      align-items:flex-end;
+      align-items:center;
+      overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
 
     .hero video{
@@ -32,172 +122,746 @@
       width:100%;
       height:100%;
       object-fit:cover;
+      z-index:-3;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(4,6,10,.92) 0%, rgba(4,6,10,.78) 42%, rgba(4,6,10,.5) 70%, rgba(4,6,10,.82) 100%),
+        linear-gradient(180deg, rgba(225,29,46,.14), transparent 26%);
       z-index:-2;
     }
 
     .hero::after{
       content:"";
       position:absolute;
-      inset:0;
-      background:rgba(0,0,0,0.45);
+      inset:auto -12% -110px auto;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(79,168,184,.28), transparent 62%);
+      filter:blur(12px);
       z-index:-1;
     }
 
-    .hero-content{
-      padding:60px;
-      max-width:600px;
-    }
-
-    .hero h1{
-      font-size:3.5rem;
-      margin:0;
-      text-transform:uppercase;
-      letter-spacing:-2px;
-    }
-
-    .hero h1 span{
-      color:#d90429;
-    }
-
-    .hero p{
-      font-size:1.2rem;
-      color:#ddd;
-      margin:20px 0 30px;
-    }
-
-    .hero a{
-      display:inline-block;
-      padding:15px 45px;
-      background:#d90429;
-      color:white;
-      text-decoration:none;
-      border-radius:40px;
-      font-weight:bold;
-    }
-
-    .hero a:hover{
-      background:#ef233c;
-    }
-
-    /* ===== PIEZAS ===== */
-    section{
-      max-width:1200px;
-      margin:80px auto;
-      padding:0 20px;
-    }
-
-    h2{
-      border-left:4px solid #d90429;
-      padding-left:15px;
-      text-transform:uppercase;
-    }
-
-    .parts-container{
+    .hero-grid{
       display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:34px;
+      align-items:center;
+      padding:72px 0 48px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(79,168,184,.14);
+      border:1px solid rgba(79,168,184,.28);
+      color:#bfe6ee;
+      font-size:.92rem;
+      font-weight:700;
+      letter-spacing:.02em;
+      margin-bottom:18px;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--accent-2);
+      box-shadow:0 0 14px rgba(79,168,184,.8);
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(2.5rem, 6vw, 5.4rem);
+      line-height:.95;
+      letter-spacing:-.05em;
+      text-transform:uppercase;
+    }
+
+    h1 .accent{color:var(--accent)}
+
+    .hero-subtitle{
+      margin:18px 0 10px;
+      font-size:clamp(1.08rem, 1.8vw, 1.4rem);
+      color:#dce6f0;
+      max-width:760px;
+      font-weight:700;
+    }
+
+    .hero-question{
+      margin:0 0 20px;
+      font-size:clamp(1rem, 2vw, 1.5rem);
+      color:#ffe2e6;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+    }
+
+    .hero-text{
+      margin:0 0 26px;
+      max-width:720px;
+      color:var(--muted);
+      font-size:1.06rem;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 22px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:800;
+      letter-spacing:.01em;
+      transition:transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--accent),#ff4254);
+      color:white;
+      box-shadow:var(--shadow);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,.14);
+      color:var(--text);
+      background:rgba(255,255,255,.04);
+    }
+
+    .meta-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .meta-card{
+      background:rgba(16,21,29,.82);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:16px 18px;
+      box-shadow:var(--shadow);
+    }
+
+    .meta-card .label{
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:#8da0b8;
+      margin-bottom:6px;
+      font-weight:700;
+    }
+
+    .meta-card .value{
+      font-size:.98rem;
+      color:var(--soft);
+      font-weight:700;
+    }
+
+    .hero-side{
+      display:flex;
+      justify-content:center;
+    }
+
+    .poster-card{
+      width:min(100%, 480px);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:28px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .poster-card img{
+      display:block;
+      width:100%;
+      border-radius:18px;
+      object-fit:cover;
+    }
+
+    main section{
+      padding:38px 0;
+      scroll-margin-top:96px;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:0 0 20px;
+      font-size:clamp(1.5rem,3vw,2.3rem);
+      text-transform:uppercase;
+      letter-spacing:-.03em;
+    }
+
+    .section-title::before{
+      content:"";
+      width:12px;
+      height:34px;
+      border-radius:999px;
+      background:linear-gradient(180deg,var(--accent),var(--accent-2));
+    }
+
+    .lead{
+      color:var(--muted);
+      max-width:900px;
+      margin:0 0 28px;
+      font-size:1.04rem;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:22px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
       gap:20px;
     }
 
-    details{
-      background:#111;
-      border:1px solid #333;
-      border-radius:10px;
-      overflow:hidden;
+    .card{
+      background:linear-gradient(180deg,var(--panel),var(--panel-2));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
     }
 
-    summary{
-      padding:20px;
-      font-size:1.2rem;
-      cursor:pointer;
-      font-weight:bold;
-      background:#0f0f0f;
+    .card h3{
+      margin:0 0 12px;
+      font-size:1.24rem;
     }
 
-    summary:hover{ color:#d90429; }
+    .card p{
+      margin:0;
+      color:var(--muted);
+    }
 
-    .part-content{
-      padding:25px;
+    .badge-title{
+      display:inline-block;
+      margin:0 0 14px;
+      padding:8px 14px;
+      border-radius:12px;
+      background:rgba(79,168,184,.18);
+      color:#d4f4fa;
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+
+    ul{
+      margin:12px 0 0 18px;
+      padding:0;
+      color:var(--soft);
+    }
+
+    li + li{margin-top:8px}
+
+    .highlight{
+      margin-top:18px;
+      padding:18px 20px;
+      border-radius:18px;
+      background:rgba(225,29,46,.11);
+      border:1px solid rgba(225,29,46,.28);
+      color:#ffd7dc;
+      font-weight:800;
+      text-align:center;
+    }
+
+    .stats{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:25px;
-      background:#000;
+      grid-template-columns:repeat(5, minmax(0,1fr));
+      gap:16px;
+      margin-top:24px;
     }
 
-    @media(max-width:900px){
-      .part-content{
+    .stat{
+      background:linear-gradient(180deg, rgba(79,168,184,.13), rgba(255,255,255,.03));
+      border:1px solid rgba(79,168,184,.18);
+      border-radius:20px;
+      padding:22px 16px;
+      text-align:center;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:2rem;
+      color:white;
+      margin-bottom:4px;
+    }
+
+    .timeline{
+      display:grid;
+      gap:16px;
+    }
+
+    .timeline-step{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:16px;
+      align-items:start;
+      background:linear-gradient(180deg,var(--panel),var(--panel-2));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .step-number{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--accent),#ff5968);
+      font-weight:900;
+      box-shadow:var(--shadow);
+    }
+
+    .quote-box{
+      margin-top:18px;
+      padding:22px;
+      border-radius:20px;
+      background:linear-gradient(135deg, rgba(79,168,184,.12), rgba(225,29,46,.08));
+      border:1px solid rgba(255,255,255,.08);
+      font-size:1.08rem;
+      color:#edf7fb;
+      font-weight:700;
+    }
+
+    .applications{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .app-item{
+      background:linear-gradient(180deg,var(--panel),var(--panel-2));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .app-item h4{
+      margin:0 0 10px;
+      font-size:1.06rem;
+    }
+
+    .app-item p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .footer{
+      margin-top:32px;
+      padding:32px 0 48px;
+      border-top:1px solid rgba(255,255,255,.08);
+      color:#99a9bc;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width:1050px){
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .applications,
+      .stats{
+        grid-template-columns:1fr 1fr;
+      }
+      .hero-grid{gap:28px}
+    }
+
+    @media (max-width:760px){
+      .hero{min-height:auto}
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .applications,
+      .stats,
+      .meta-grid{
         grid-template-columns:1fr;
       }
-    }
-
-    .display-box{
-      background:#111;
-      border:1px solid #333;
-      border-radius:12px;
-      padding:20px;
-    }
-
-    .display-box h4{
-      margin:0 0 15px;
-      font-size:0.9rem;
-      color:#aaa;
-      border-bottom:1px solid #d90429;
-      padding-bottom:8px;
-      text-transform:uppercase;
-    }
-
-    model-viewer{
-      width:100%;
-      height:300px;
-      background:#000;
-      border-radius:8px;
-    }
-
-    .plano-img{
-      width:100%;
-      height:260px;
-      object-fit:contain;
-      background:white;
-      border-radius:6px;
-    }
-
-    .btn-download{
-      display:block;
-      margin-top:15px;
-      text-align:center;
-      padding:10px;
-      background:#222;
-      color:white;
-      text-decoration:none;
-      border-radius:6px;
-      font-weight:bold;
-    }
-
-    .btn-download:hover{
-      background:#d90429;
+      .nav{
+        justify-content:center;
+      }
+      .hero-grid{
+        padding:110px 0 34px;
+      }
+      .hero-content{
+        order:2;
+      }
+      .hero-side{
+        order:1;
+      }
+      .topbar{
+        position:fixed;
+        width:100%;
+      }
+      .nav-links{
+        justify-content:center;
+      }
+      .timeline-step{
+        grid-template-columns:1fr;
+      }
+      .step-number{
+        width:38px;
+        height:38px;
+      }
     }
   </style>
 </head>
-
 <body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-badge">EA</div>
+        <div>
+          EXO-ARM
+          <small>Tercer brazo robótico asistente</small>
+        </div>
+      </div>
 
-<!-- ===== HERO ===== -->
-<header class="hero">
-  <video autoplay muted loop playsinline>
-    <source src="assets/videoplayback.mp4" type="video/mp4">
-  </video>
+      <nav class="nav-links">
+        <a href="#problema">Problema</a>
+        <a href="#solucion">Solución</a>
+        <a href="#metodologia">Metodología</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#impacto">Impacto</a>
+        <a href="#futuro">Trabajo futuro</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="hero-content">
-    <h1>Exo<span>Arm</span></h1>
-    <p>Proyecto Final – Prótesis Biónica</p>
-    <a href="#piezas">Explorar diseño</a>
-  </div>
-</header>
+  <section class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="assets/videoplayback.mp4" type="video/mp4">
+    </video>
 
-<!-- ===== PIEZAS ===== -->
-<section id="piezas">
-  <h2>Piezas del Proyecto</h2>
-  <div id="piezas-container" class="parts-container"></div>
-</section>
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="eyebrow">Universidad Católica Boliviana “San Pablo” – Sede La Paz</div>
+        <p class="hero-question">¿Cuántas veces dijiste: “me falta otra mano”?</p>
+        <h1>EXO-<span class="accent">ARM</span></h1>
+        <p class="hero-subtitle">Tercer brazo robótico asistente para exoesqueleto de cadera y espalda</p>
+        <p class="hero-text">
+          Sistema de aumento humano diseñado para apoyar tareas técnicas e industriales donde dos manos no son suficientes.
+          El objetivo no es reemplazar al humano, sino aumentar sus capacidades con una solución ergonómica, modular y escalable.
+        </p>
 
-<script src="main.js"></script>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#solucion">Ver propuesta</a>
+          <a class="btn btn-secondary" href="#resultados">Resultados del proyecto</a>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta-card">
+            <div class="label">Autores</div>
+            <div class="value">Franco Milan Morales Albarracín<br>Gustavo Miranda Espada<br>Nayara Carminia Lara Ramos</div>
+          </div>
+          <div class="meta-card">
+            <div class="label">Asesor</div>
+            <div class="value">Ing. Khalil Nallar Camacho</div>
+          </div>
+          <div class="meta-card">
+            <div class="label">Categoría</div>
+            <div class="value">Robótica – Mecatrónica</div>
+          </div>
+          <div class="meta-card">
+            <div class="label">Enfoque</div>
+            <div class="value">Asistencia humana en tareas técnicas e industriales</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="problema">
+      <div class="container">
+        <h2 class="section-title">Problema</h2>
+        <p class="lead">
+          En múltiples actividades industriales y técnicas, dos manos no son suficientes. Existen tareas donde se necesita sostener una pieza,
+          manipular una herramienta y estabilizar el trabajo al mismo tiempo, generando fatiga, posturas forzadas y menor precisión.
+        </p>
+
+        <div class="grid-2">
+          <article class="card">
+            <span class="badge-title">Necesidades detectadas</span>
+            <ul>
+              <li>Sostener una pieza mientras se ejecuta otra acción.</li>
+              <li>Manipular una herramienta sin perder estabilidad.</li>
+              <li>Estabilizar componentes durante tareas técnicas.</li>
+              <li>Reducir esfuerzo físico en operaciones repetitivas.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="badge-title">Consecuencias actuales</span>
+            <ul>
+              <li>Fatiga acumulada durante la jornada de trabajo.</li>
+              <li>Posturas forzadas que afectan la ergonomía del usuario.</li>
+              <li>Menor precisión en ensamblaje, mantenimiento o construcción.</li>
+              <li>Limitación funcional cuando se requieren más puntos de apoyo.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="solucion">
+      <div class="container">
+        <h2 class="section-title">Solución propuesta</h2>
+        <p class="lead">
+          EXO-Arm es un sistema de aumento humano que integra un brazo robótico adicional con un exoesqueleto de cadera y espalda.
+          Está pensado para asistir al usuario y ampliar su capacidad operativa en tareas reales, sin sustituir su criterio ni su control.
+        </p>
+
+        <div class="grid-2">
+          <article class="card">
+            <span class="badge-title">Lo que permite el sistema</span>
+            <ul>
+              <li>Sostener objetos.</li>
+              <li>Estabilizar piezas.</li>
+              <li>Apoyar herramientas.</li>
+              <li>Brindar asistencia en tareas técnicas.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="badge-title">Enfoque del proyecto</span>
+            <p>
+              El diseño apunta a una interacción cómoda con el cuerpo humano y a una distribución que proteja la integridad del usuario,
+              manteniendo un formato modular que facilite mejoras, cambios de herramienta y futuras escalas del sistema.
+            </p>
+          </article>
+        </div>
+
+        <div class="highlight">
+          La solución NO es reemplazar al humano, sino aumentar sus capacidades.
+        </div>
+      </div>
+    </section>
+
+    <section id="caracteristicas">
+      <div class="container">
+        <h2 class="section-title">Características del sistema</h2>
+        <div class="stats">
+          <div class="stat">
+            <strong>5</strong>
+            Grados de libertad
+          </div>
+          <div class="stat">
+            <strong>+1</strong>
+            Brazo robótico adicional
+          </div>
+          <div class="stat">
+            <strong>Mod</strong>
+            Sistema modular y escalable
+          </div>
+          <div class="stat">
+            <strong>Ergo</strong>
+            Estructura cómoda para el usuario
+          </div>
+          <div class="stat">
+            <strong>STD</strong>
+            Brida compatible con estándares industriales
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:22px;">
+          <article class="card">
+            <span class="badge-title">Diseño mecánico</span>
+            <ul>
+              <li>Estructura cómoda adecuada al cuerpo humano.</li>
+              <li>Distribución pensada para proteger la integridad del usuario.</li>
+              <li>Brida utilizable con estándares industriales, similar a KUKA.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="badge-title">Arquitectura del sistema</span>
+            <ul>
+              <li>Integración con exoesqueleto de cadera y espalda.</li>
+              <li>Capacidad de adaptación a distintos end-effectors.</li>
+              <li>Base para nuevas funciones, sensores y control intuitivo.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="metodologia">
+      <div class="container">
+        <h2 class="section-title">Metodología</h2>
+        <p class="lead">
+          El desarrollo del proyecto se organizó en tres etapas principales, desde el diseño del sistema hasta la construcción del prototipo funcional.
+        </p>
+
+        <div class="timeline">
+          <article class="timeline-step">
+            <div class="step-number">1</div>
+            <div>
+              <h3>Diseño mecánico</h3>
+              <p>
+                Modelado CAD en SolidWorks del exoesqueleto y del brazo robótico, definiendo estructura, geometría y forma de integración entre ambos subsistemas.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-step">
+            <div class="step-number">2</div>
+            <div>
+              <h3>Simulación</h3>
+              <p>
+                Análisis estructural y simulación dinámica del movimiento para evaluar el comportamiento mecánico del sistema y validar su funcionamiento básico.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-step">
+            <div class="step-number">3</div>
+            <div>
+              <h3>Construcción del prototipo</h3>
+              <p>
+                Ensamblaje, pruebas funcionales y evaluación del acople de herramientas para comprobar la viabilidad del modelo en tareas técnicas asistidas.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultados">
+      <div class="container">
+        <h2 class="section-title">Resultados</h2>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Prototipo funcional</h3>
+            <p>
+              Se desarrolló un prototipo funcional armado con partes mecánicas e impresión 3D, demostrando la factibilidad de la propuesta física.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Funcionamiento básico validado</h3>
+            <p>
+              Se logró la demostración del sistema electrónico para inducir el movimiento de las articulaciones y cumplir los fines básicos del modelo.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Viabilidad del concepto</h3>
+            <p>
+              El sistema muestra que un tercer miembro robótico es viable como apoyo humano en tareas técnicas que exigen más de dos puntos de acción.
+            </p>
+          </article>
+        </div>
+
+        <div class="quote-box">
+          El proyecto demuestra que la asistencia robótica wearable puede convertirse en una herramienta útil para aumentar precisión,
+          soporte y productividad en trabajos técnicos e industriales.
+        </div>
+      </div>
+    </section>
+
+    <section id="impacto">
+      <div class="container">
+        <h2 class="section-title">Impacto y aplicaciones</h2>
+        <p class="lead">
+          EXO-Arm puede aplicarse en ambientes industriales, de ensamblaje, mantenimiento técnico y construcción, con el potencial de reducir fatiga,
+          mejorar precisión y aumentar la productividad del trabajador.
+        </p>
+
+        <div class="applications">
+          <article class="app-item">
+            <h4>Ensamblaje</h4>
+            <p>Apoyo adicional para sostener, posicionar y estabilizar componentes durante procesos de armado.</p>
+          </article>
+          <article class="app-item">
+            <h4>Mantenimiento técnico</h4>
+            <p>Mejora la manipulación simultánea de piezas y herramientas en intervenciones de ajuste o reparación.</p>
+          </article>
+          <article class="app-item">
+            <h4>Construcción</h4>
+            <p>Asistencia física en tareas donde se requiere un punto extra de soporte o estabilidad temporal.</p>
+          </article>
+          <article class="app-item">
+            <h4>Bienestar laboral</h4>
+            <p>Contribuye a disminuir fatiga y posturas forzadas, favoreciendo un trabajo más preciso y sostenible.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="futuro">
+      <div class="container">
+        <h2 class="section-title">Trabajo futuro</h2>
+        <div class="grid-2">
+          <article class="card">
+            <span class="badge-title">Próximos desarrollos</span>
+            <ul>
+              <li>Control más intuitivo por estímulos, logrando mejor coordinación y funcionamiento óptimo.</li>
+              <li>Integración de sensores de seguridad para un desempeño seguro en entornos de trabajo.</li>
+              <li>Mejora de la evaluación ergonómica para mayor comodidad del usuario.</li>
+              <li>Nuevos end-effectors adaptables a distintas funciones, situaciones y contextos.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span class="badge-title">Visión del proyecto</span>
+            <p>
+              La evolución de EXO-Arm apunta a convertirse en una plataforma de asistencia humana más completa, segura y personalizable,
+              capaz de integrarse a escenarios reales donde el rendimiento humano pueda potenciarse mediante robótica wearable.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>EXO-ARM</strong><br>
+        Proyecto de Robótica – Mecatrónica
+      </div>
+      <div>
+        Universidad Católica Boliviana “San Pablo” – Sede La Paz
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
